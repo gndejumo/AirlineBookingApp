@@ -6,7 +6,7 @@ const userSchema = new Schema ({
   lastName: String,
   email: { type: String, unique: true },
   password: String,
-  isAdmin: { type: String, enum: ["user", "admin"], default: "user" }
+  role: { type: String, enum: ["user", "admin"], default: "user" }
 });
 
 module.exports = model('User', userSchema);

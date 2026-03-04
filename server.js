@@ -1,5 +1,6 @@
 const express = require ('express');
 const app = express(); //app express name 
+const rateLimiter = require("./middlewares/rateLimiter");
 require ('dotenv').config(); //import what is on .env file
 
 
@@ -13,10 +14,13 @@ app.get('/', (req, res) => {
 })
 
 app.use(express.json());
+// RATE LIMITER
+app.use(rateLimiter);
 // BACKEND ROUTES
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/flights', flightRoutes);
+
 
 mongoose.connect(process.env.DB_URL).then(() => console.log('DB Connected successfully!')).catch(err => console.log("DB error", err));
 

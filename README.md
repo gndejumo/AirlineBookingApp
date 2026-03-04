@@ -3,27 +3,63 @@
 
 Day 1 – Project Setup & Planning
 
-Define features:
+    User Features
 
-User registration & login
+        Register as user
+        
+        Register as admin
 
-Search flights
+        Login / Logout
 
-Book flight
+        Search flights
 
-View bookings
+        Book a flight
 
-Admin add flights
+        View my bookings
 
-Wireframe pages (paper/Figma)
+        Cancel booking
 
-Initialize Git repo
+    Admin Features
 
-Setup folders:
+        Login as admin
 
-/client (Vite + React)
+        Add flights
 
-/server (Node + Express)
+        Update flights
+
+        Delete flights
+
+    STEP 2: List Your Pages (15 mins)
+
+        Write this in a notebook or README.md:
+
+        Frontend Pages
+
+        / – Home (Search flights)
+
+        /login
+
+        /register
+
+        /flights
+
+        /book/:flightId
+
+        /my-bookings
+
+        /admin
+        
+        /cancel/:flightId
+
+        Backend APIs (High Level)
+
+        /api/users
+
+        /api/flights
+
+        /api/bookings
+
+
 
 Day 2 – Navbar & Layout
 

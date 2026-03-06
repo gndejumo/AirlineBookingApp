@@ -3,13 +3,12 @@ const { Schema } = mongoose;
 
 const flightSchema = new Schema ({
   flightNumber: String,
-  airline: String,
-  departureAirport: String,
-  arrivalAirport: String,
-  departureTime: Date,
-  arrivalTime: Date,
+  origin: String,
+  destination: String,
+  departureDate: Date,
+  arrivalDate: Date,
   price: Number,
-  seatsAvailable: Number
+  seats: Number
 });
 
 module.exports = mongoose.model('Flight', flightSchema);

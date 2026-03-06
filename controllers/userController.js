@@ -1,6 +1,3 @@
-// const bcrypt = require('bcrypt');
-// const auth = require('../middlewares/authMiddleware');
-// const {errorHandler} = require('../middlewares/adminMiddleware')
 const User = require('../models/User');
 
 
@@ -27,11 +24,8 @@ const setAsAdmin = async (req, res) => {
             
         });
     } catch (err) {
-        return res.status(500).send({
-            message: "Server error", 
-            err: err.message
-        });
+        next(err)
     }
 };
 
-module.exports = {setAsAdmin}
+module.exports = setAsAdmin

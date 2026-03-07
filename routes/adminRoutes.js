@@ -8,7 +8,7 @@ router.patch('/setAsAdmin/:id', verify, verifyAdmin, adminController.setAsAdmin)
 // get all users
 router.get('/users', verify, verifyAdmin, adminController.getAllUsers);
 // delete user
-router.delete('users/:id', verify, verifyAdmin, adminController.deleteUser)
+router.delete('/users/:id', verify, verifyAdmin, adminController.deleteUser);
 
 
 module.exports = router;

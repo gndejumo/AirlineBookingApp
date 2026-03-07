@@ -3,6 +3,7 @@ const app = express(); //app express name
 const rateLimiter = require("./middlewares/rateLimiter");
 const errorHandler = require("./middlewares/errorHandler");
 require ('dotenv').config(); //import what is on .env file
+const mongoose = require('mongoose');
 
 
 // Routes
@@ -10,8 +11,9 @@ const userRoutes = require("./routes/userRoutes")
 const authRoutes = require("./routes/authRoutes")
 const flightRoutes = require("./routes/flightRoutes")
 const adminRoutes = require("./routes/adminRoutes")
+const bookingRoutes = require("./routes/bookingRoutes")
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
     res.send('Welcome from express!')
 })
 
@@ -19,10 +21,11 @@ app.use(express.json());
 // RATE LIMITER
 app.use(rateLimiter);
 // BACKEND ROUTES
-app.use('/auth', authRoutes);
-app.use('/admin',adminRoutes)
-app.use('/users', userRoutes);
-app.use('/flights', flightRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/admin',adminRoutes)
+app.use('/api/users', userRoutes);
+app.use('/api/flights', flightRoutes);
+app.use('/api/bookings', bookingRoutes);
 
 app.use(errorHandler);
 

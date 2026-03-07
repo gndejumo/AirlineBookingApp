@@ -114,4 +114,4 @@ const getAvailableSeats = (req, res, next) => {
     .catch(err => next(err));
 }
 
-module.exports = {getAllFlights, getFlightById, searchFlights, filterFlights, getAvailableSeats,createFlight, updateFlight, deleteFlight,}
+module.exports = {getAllFlights, getFlightById, searchFlights, filterFlights, getAvailableSeats,createFlight, updateFlight, deleteFlight}

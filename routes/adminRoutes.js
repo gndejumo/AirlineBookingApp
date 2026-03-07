@@ -1,12 +1,20 @@
 const express = require('express')
 const router = express.Router();
-const flightController = require('../controllers/flightController')
 const adminController = require('../controllers/adminController')
-const {verify, verifyAdmin} = require('../middlewares/authMiddleware');
+const {verify, verifyAdmin} = require('../middlewares/adminMiddleware');
+
+// set user as an admin
+router.patch('/setAsAdmin/:id', verify, verifyAdmin, adminController.setAsAdmin);
+// get all users
+router.get('/users', verify, verifyAdmin, adminController.getAllUsers);
+// delete user
+router.delete('users/:id', verify, verifyAdmin, adminController.deleteUser)
 
 
-router.patch('/admin/setAsAdmin/:id', verify, verifyAdmin, adminController.setAsAdmin);
-router.get('/admin/getAllUsers', verify, verifyAdmin, adminController.getAllUsers);
-router.patch('admin/createFlight', verify, verifyAdmin, flightController.createFlight)
-router.patch('admin/updateFlight/:id', verify, verifyAdmin, flightController.updateFlight)
-router.delete('admin/deleteFlight/:id', verify, verifyAdmin, flightController.deleteFlight)
+module.exports = router;
+
+
+
+
+
+

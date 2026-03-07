@@ -2,7 +2,7 @@ const Booking = require('../models/Booking');
 const Flight = require('../models/Flight');
 
 // Book a flight
-const bookFlights = (req, res, next) => {
+const bookFlight = (req, res, next) => {
     const {flightId, passengers} = req.body;
     
     if(!flightId) {
@@ -40,16 +40,7 @@ const bookFlights = (req, res, next) => {
     })
     .catch(err => next(err));
 }
-// Get all booking of the logged in user
-const getUserBookings = (req, res, next) => {
-    return Booking.findById({userId: req.user.id}).populate('flightId').then(bookings => {
-        return res.status(200).send({
-            message: "User bookings retrieved successfully",
-            bookings
-        });
-    })
-    .catch(err => next(err));
-}
+
 
 // Get booking ID
 const getBookingById = (req, res, next) => {
@@ -65,28 +56,6 @@ const getBookingById = (req, res, next) => {
                 message: "Booking retrieved successfuly",
                 booking
             });
-    })
-    .catch(err => next(err));
-}
-
-//Cancel booking
-const cancelBooking = (req, res, next) => {
-    return Booking.findById(req.params.id)
-    .then(booking => {
-        if(!booking) {
-            return res.status(404).send({
-                message: "Booking not found"
-            })
-        }
-        booking.status = "cancelled"
-        return booking.save();
-    })
-    .then(updatedBooking => {
-        console.log(updatedBooking);
-        return res.status(200).send({
-            message: "Booking cancelled successfully!",
-            booking: updatedBooking
-        })
     })
     .catch(err => next(err));
 }
@@ -146,4 +115,4 @@ const paymentProcessing = (req, res, next) => {
 }
 
 
-module.exports = {bookFlights,getUserBookings, getBookingById, cancelBooking, calculatePrice, checkSeatAvailability, paymentProcessing}
+module.exports = {bookFlight, getBookingById, calculatePrice, checkSeatAvailability, paymentProcessing}

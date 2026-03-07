@@ -9,6 +9,7 @@ require ('dotenv').config(); //import what is on .env file
 const userRoutes = require("./routes/userRoutes")
 const authRoutes = require("./routes/authRoutes")
 const flightRoutes = require("./routes/flightRoutes")
+const adminRoutes = require("./routes/adminRoutes")
 
 app.get('/', (req, res) => {
     res.send('Welcome from express!')
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(rateLimiter);
 // BACKEND ROUTES
 app.use('/auth', authRoutes);
+app.use('/admin',adminRoutes)
 app.use('/users', userRoutes);
 app.use('/flights', flightRoutes);
 

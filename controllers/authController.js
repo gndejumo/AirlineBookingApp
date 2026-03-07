@@ -104,4 +104,7 @@ const getProfile = (req, res, next) => {
         });
 };
 
+
+
+
 module.exports = {loginUser, registerUser, getProfile}

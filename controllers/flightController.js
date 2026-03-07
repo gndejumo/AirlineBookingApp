@@ -1,19 +1,6 @@
 const Flight = require('../models/Flight');
 
-const createFlight = (req, res, next) => {
-    const {flightNumber, origin, destination,departureDate, arrivalDate, seats, price } = req.body
-    const newFlight = new Flight ({
-        flightNumber,
-        origin,
-        destination,
-        departureDate,
-        arrivalDate,
-        price,
-        seats
-    });
-    return newFlight.save().then((flight) => res.status(201).send(flight))
-    .catch(err => next(err))
-}
+
 const getAllFlights = (_req, res, next) => {
     return Flight.find({})
     .then((flights) => res.send(flights))
@@ -31,6 +18,21 @@ const getFlightById = (req, res, next) => {
         return res.status(200).send(flight);
     })
     .catch(err => next(err));
+}
+
+const createFlight = (req, res, next) => {
+    const {flightNumber, origin, destination,departureDate, arrivalDate, seats, price } = req.body
+    const newFlight = new Flight ({
+        flightNumber,
+        origin,
+        destination,
+        departureDate,
+        arrivalDate,
+        price,
+        seats
+    });
+    return newFlight.save().then((flight) => res.status(201).send(flight))
+    .catch(err => next(err))
 }
 
 const updateFlight = (req, res, next) => {
@@ -112,4 +114,4 @@ const getAvailableSeats = (req, res, next) => {
     .catch(err => next(err));
 }
 
-module.exports = {createFlight, getAllFlights, getFlightById, updateFlight, deleteFlight, searchFlights, filterFlights, getAvailableSeats}
+module.exports = {getAllFlights, getFlightById, searchFlights, filterFlights, getAvailableSeats,createFlight, updateFlight, deleteFlight,}

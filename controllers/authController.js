@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const auth = require('../middlewares/authMiddleware');
-
+const Blacklist = require('../models/Blacklist');
 
 // Register a User
 const registerUser = (req, res, next) => {
@@ -10,7 +10,7 @@ const registerUser = (req, res, next) => {
 
     // Require fields validation
     if (!firstName || !lastName || !email || !password) {
-        return res.send(400).send({
+        return res.status(400).send({
             message: "All fields are required"
         })
     }
@@ -25,21 +25,25 @@ const registerUser = (req, res, next) => {
         return res.status(400).send({
             message: "Password must contain atleast 8 characters"
         });
-    } else {
+    }
+    return User.findOne({ email }).then(existingUser => {
+        if (existingUser) {
+            return res.status(409).send({
+                message: "User already exist"
+            });
+        }
         const newUser = new User({
             firstName,
             lastName,
             email,
             password: bcrypt.hashSync(password, 10)
-        })
+        });
         console.log(newUser);
         return newUser.save().then(() => res.status(201).send({
             message: "Registered Successfully!"
-        }))
-        .catch(err => {
-            next(err);
-        })
-    }
+        }));
+    })
+    .catch(err => next(err));
 }
 // Login a user
 const loginUser = (req, res, next) => {
@@ -104,7 +108,16 @@ const getProfile = (req, res, next) => {
         });
 };
 
+const logoutUser = async (req, res) => {
+    const token = req.headers.authorization.split(" ")[1];
+
+    await Blacklist.create({ token });
+
+    return res.status(200).send({
+        message: "Logout successful"
+    });
+};
 
 
 
-module.exports = {loginUser, registerUser, getProfile}
+module.exports = {loginUser, registerUser, getProfile, logoutUser}

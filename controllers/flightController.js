@@ -21,19 +21,17 @@ const getFlightById = (req, res, next) => {
 }
 
 const createFlight = (req, res, next) => {
-    const {flightNumber, origin, destination,departureDate, arrivalDate, seats, price } = req.body
-    const newFlight = new Flight ({
-        flightNumber,
-        origin,
-        destination,
-        departureDate,
-        arrivalDate,
-        price,
-        seats
-    });
-    return newFlight.save().then((flight) => res.status(201).send(flight))
-    .catch(err => next(err))
+    const flights = Array.isArray(req.body) ? req.body : [req.body];
+
+    Flight.insertMany(flights).then(flights => {
+        return res.status(201).send({
+            message: "Flight(s) successfully created",
+            flights 
+        })
+    })
+    .catch(err => next(err));
 }
+
 
 const updateFlight = (req, res, next) => {
     const {origin, destination, price} = req.body
@@ -51,7 +49,10 @@ const updateFlight = (req, res, next) => {
                 message: "Flight not found"
             })
         }
-            return res.status(200).send(flight)
+            return res.status(200).send({
+                message: "Successfully updated flight(s)",
+                flight
+            })
     })
     .catch(err => next(err));
 }

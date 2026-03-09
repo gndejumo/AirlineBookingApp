@@ -1,6 +1,6 @@
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 const jwt = require("jsonwebtoken");
-
+const Blacklist = require('../models/Blacklist');
 // Token Verification
 
 const verify = (req, res, next) => {
@@ -23,6 +23,13 @@ const verify = (req, res, next) => {
     }
     // remove word "Bearer "
     const token = authHeader.split(" ")[1];
+    // check blacklist
+    Blacklist.findOne({token}).then(blacklisted => {
+        if (blacklisted) {
+            return res.status(401).send({
+                message: "User has been logged out"
+            })
+        }
     // verify token
     // syntax = jwt.verify(token, secretOrPublicKey, callback)
     jwt.verify(token, JWT_SECRET_KEY, (err, decoded) => {
@@ -35,9 +42,10 @@ const verify = (req, res, next) => {
     req.user = decoded;
     console.log("Result from verify method:")
     console.log(decoded)
-     // move to next middleware
-     next();
+    next();
     });
+    })
+    .catch(err => next(err))
 }
 
 // Admin verfication

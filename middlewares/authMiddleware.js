@@ -10,7 +10,7 @@ const createAccessToken = (user) => {
         email: user.email,
         role: user.role
     };
-    return jwt.sign(data, JWT_SECRET_KEY,{});
+    return jwt.sign(data, JWT_SECRET_KEY,{expiresIn: "24h"});
 };
 
 module.exports = {createAccessToken}

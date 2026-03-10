@@ -1,6 +1,6 @@
 const Booking = require('../models/Booking');
 const Flight = require('../models/Flight');
-
+const Payment = require('../models/Payment');
 // Book a flight
 const bookFlight = (req, res, next) => {
     const {flightId, passengers} = req.body;
@@ -10,12 +10,12 @@ const bookFlight = (req, res, next) => {
             message: "Flight ID is required"
         });
     }
-    if(!passengers || !passengers < 1) {
+    if(!passengers || passengers < 1) {
         return res.status(400).send({
-            message: "Passenger must be atleast 1"
+            message: "Passengers must be atleast 1"
         })
     }
-    return Flight.findByID.then(flight => {
+    return Flight.findById(flightId).then(flight => {
         if (!flight) {
             return res.status(404).send({
                 message: "Flight ID not found"
@@ -23,7 +23,7 @@ const bookFlight = (req, res, next) => {
         }
         const totalPrice = flight.price * passengers;
         const newBooking = new Booking ({
-            userID: req.user.id,
+            userId: req.user.id,
             flightId: flightId,
             passengers: passengers,
             totalPrice: totalPrice
@@ -87,9 +87,17 @@ const checkSeatAvailability = (req, res, next) => {
                 message: "Flight not found"
             })
         }
+        let availability;
+        if (flight.seats === 0){
+            availability = "sold out"
+                } else if (flight.seats < passengers) {
+                    availability = "not enough seats"
+                } else {
+                    availability = "available"
+                }
             return res.status(200).send({
                 message: "Successfully caculated price",
-                available: flight.seats >= passengers,
+                available: availability,
                 availableSeats: flight.seats
             })
     })

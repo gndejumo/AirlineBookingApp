@@ -19,6 +19,6 @@ router.post('/', verify, verifyAdmin, flightController.createFlight)
 // update flight
 router.patch('/:id', verify, verifyAdmin,validateObjectId, flightController.updateFlight)
 // delete flight
-router.delete('/id', verify, verifyAdmin,validateObjectId, flightController.deleteFlight)
+router.delete('/:id', verify, verifyAdmin,validateObjectId, flightController.deleteFlight)
 
 module.exports = router;

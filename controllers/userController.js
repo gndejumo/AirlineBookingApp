@@ -28,15 +28,15 @@ const updateProfile = (req, res, next) => {
 
 // Get all booking of the logged in user
 const getUserBookings = (req, res, next) => {
-    return Booking.findById({userId: req.user.id}).populate('flightId').then(bookings => {
+    return Booking.find({ userId: req.user.id}).populate('flightId')
+    .then(bookings => {
         return res.status(200).send({
-            message: "User bookings retrieved successfully",
+            message: "User booking retrieved successfully",
             bookings
-        });
+        })
     })
     .catch(err => next(err));
-}
-
+}           
 //Cancel booking
 const cancelBooking = (req, res, next) => {
     return Booking.findById(req.params.id)

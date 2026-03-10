@@ -112,9 +112,10 @@ const logoutUser = async (req, res) => {
     const token = req.headers.authorization.split(" ")[1];
 
     await Blacklist.create({ token });
+    console.log("Logout successful:", req.user.id);
 
     return res.status(200).send({
-        message: "Logout successful"
+        message: "Logout successfull"
     });
 };
 

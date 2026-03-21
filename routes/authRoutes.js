@@ -6,6 +6,6 @@ const {verify} = require('../middlewares/adminMiddleware');
 
 router.post('/register', authController.registerUser);
 router.post('/login', authController.loginUser);
-router.post('/profile', verify, authController.getProfile )
+router.get('/profile', verify, authController.getProfile )
 
 module.exports = router;

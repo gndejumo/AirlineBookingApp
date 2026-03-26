@@ -1,0 +1,31 @@
+.flights-page {
+  padding: 40px;
+}
+
+.flights-header {
+  margin-bottom: 24px;
+}
+
+.flights-header h1 {
+  color: #14213d;
+  margin-bottom: 8px;
+}
+
+.flights-header p {
+  color: #555;
+}
+
+.flights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.status-message {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.status-message.error {
+  color: red;
+}

@@ -1,0 +1,31 @@
+.flight-card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.flight-card:hover {
+  transform: translateY(-4px);
+}
+
+.flight-card h3 {
+  color: #14213d;
+  margin-bottom: 12px;
+}
+
+.flight-card p {
+  margin-bottom: 8px;
+  color: #444;
+}
+
+.book-btn {
+  margin-top: 12px;
+  background: #14213d;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}

@@ -31,7 +31,7 @@ function Flights() {
     <div className="flights-page">
       <div className="flights-header">
         <h1>Available Flights</h1>
-        <p>Choose your destination and book your next trip.</p>
+        <p>Choose your next destination.</p>
       </div>
 
       {flights.length === 0 ? (

@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
       const response = await loginUser(formData);
 
       // adjust depending on backend response
-      const token = response.data.access || response.data.token;
+      const token = response.data.user || response.data.token;
 
       if (token) {
         localStorage.setItem("token", token);

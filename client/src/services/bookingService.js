@@ -2,23 +2,23 @@ import api from './api';
 
 
 const calculatePrice = () => {
-    api.post('/bookings/calculate')
+    return api.post('/bookings/calculate')
 }
 
 const paymentProcessing = () => {
-    api.post('/bookings/payment')
+    return api.post('/bookings/payment')
 }
 
 const checkSeatAvailability = () => {
-    api.post('/bookings/seatavail')
+    return api.post('/bookings/seatavail')
 }
 
 const getBookingById = (userId) => {
-    api.get(`/bookings/${userId}`)
+    return api.get(`/bookings/${userId}`)
 }
 
 const bookFlight = () => {
-    api.post('/bookings/')
+    return api.post('/bookings/')
 }
 
 

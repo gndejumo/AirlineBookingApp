@@ -20,18 +20,65 @@ const getFlightById = (req, res, next) => {
     .catch(err => next(err));
 }
 
-const createFlight = (req, res, next) => {
-    const flights = Array.isArray(req.body) ? req.body : [req.body];
+const createFlight = async (req, res, next) => {
+  try {
+    const {
+      flightNumber,
+      origin,
+      destination,
+      departureDate,
+      arrivalDate,
+      price,
+      seats
+    } = req.body;
 
-    Flight.insertMany(flights).then(flights => {
-        return res.status(201).send({
-            message: "Flight(s) successfully created",
-            flights 
-        })
-    })
-    .catch(err => next(err));
-}
+    // REQUIRED FIELDS
+    if (!flightNumber || !origin || !destination || !departureDate || !arrivalDate || price == null || seats == null) 
+        {
+      return res.status(400).send({
+        message: "All fields are required"
+      });
+    }
 
+    const departure = new Date(departureDate);
+    const arrival = new Date(arrivalDate);
+
+    // VALID DATE CHECK
+    if (isNaN(departure) || isNaN(arrival)) {
+      return res.status(400).send({
+        message: "Invalid date format"
+      });
+    }
+
+    // LOGIC CHECK
+    if (arrival <= departure) {
+      return res.status(400).send({
+        message: "Arrival must be after departure"
+      });
+    }
+
+    // CREATE FLIGHT
+    const newFlight = new Flight({
+      flightNumber,
+      origin,
+      destination,
+      departureDate,
+      arrivalDate,
+      price,
+      seats
+    });
+
+    const savedFlight = await newFlight.save();
+
+    return res.status(201).send({
+      message: "Flight created successfully",
+      flight: savedFlight
+    });
+
+  } catch (err) {
+    next(err);
+  }
+};
 
 const updateFlight = (req, res, next) => {
     const {origin, destination, price} = req.body

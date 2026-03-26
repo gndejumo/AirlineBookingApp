@@ -1,4 +1,5 @@
 const express = require ('express');
+const cors = require("cors");
 const app = express(); //app express name 
 const rateLimiter = require("./middlewares/rateLimiter");
 const errorHandler = require("./middlewares/errorHandler");
@@ -16,7 +17,12 @@ const bookingRoutes = require("./routes/bookingRoutes")
 app.get('/', (_req, res) => {
     res.send('Welcome from express!')
 })
-
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 app.use(express.json());
 // RATE LIMITER
 app.use(rateLimiter);

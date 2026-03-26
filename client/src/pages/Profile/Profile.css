@@ -1,0 +1,108 @@
+.profile-page {
+  padding: 40px;
+}
+
+/* Profile card (user info) */
+.profile-card {
+  max-width: 700px;
+  margin: 0 auto 30px;
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.profile-card h1 {
+  margin-bottom: 20px;
+  color: #14213d;
+}
+
+/* User info */
+.profile-info p {
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.profile-info strong {
+  color: #14213d;
+}
+
+/* Message */
+.profile-message {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: green;
+}
+
+/* Bookings section */
+.bookings-section {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.bookings-section h2 {
+  margin-bottom: 20px;
+  color: #14213d;
+}
+
+/* Booking grid */
+.bookings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* Booking card */
+.booking-card {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.booking-card p {
+  margin-bottom: 8px;
+  color: #444;
+}
+
+/* Status styles */
+.status-confirmed {
+  color: green;
+  font-weight: bold;
+}
+
+.status-cancelled {
+  color: red;
+  font-weight: bold;
+}
+
+/* Cancel button */
+.cancel-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background: #e63946;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cancel-btn:hover {
+  background: #ff4d5a;
+}
+
+/* Status message */
+.profile-status {
+  text-align: center;
+  margin-top: 30px;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .profile-card {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,96 @@
+.book-flight-page {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+/* Card container */
+.book-flight-card {
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Title */
+.book-flight-card h1 {
+  margin-bottom: 20px;
+  color: #14213d;
+}
+
+/* Message (success/error) */
+.message {
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: green;
+}
+
+/* Flight summary */
+.flight-summary {
+  background: #f4f7fb;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.flight-summary p {
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* Form */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.booking-form label {
+  font-weight: 600;
+  color: #14213d;
+}
+
+/* Input */
+.booking-form input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.booking-form input:focus {
+  border-color: #1f6feb;
+}
+
+/* Total price */
+.total-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #14213d;
+}
+
+/* Button */
+.book-btn {
+  background: #fca311;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.book-btn:hover {
+  background: #ffb733;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .book-flight-card {
+    padding: 20px;
+  }
+}

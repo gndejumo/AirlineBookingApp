@@ -1,0 +1,87 @@
+.flight-details-page {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.flight-details-card {
+  width: 100%;
+  max-width: 700px;
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.flight-details-card h1 {
+  color: #14213d;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.flight-details-card p {
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #444;
+}
+
+.flight-details-card strong {
+  color: #14213d;
+}
+
+/* Divider line (optional if you want to add sections later) */
+.flight-divider {
+  height: 1px;
+  background: #eee;
+  margin: 20px 0;
+}
+
+/* Actions section */
+.flight-details-actions {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.back-btn,
+.book-btn {
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  flex: 1;
+}
+
+/* Back button */
+.back-btn {
+  background: #e5e5e5;
+  color: #333;
+}
+
+.back-btn:hover {
+  background: #d6d6d6;
+}
+
+/* Book button */
+.book-btn {
+  background: #fca311;
+  color: #111;
+}
+
+.book-btn:hover {
+  background: #ffb733;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .flight-details-card {
+    padding: 20px;
+  }
+
+  .flight-details-actions {
+    flex-direction: column;
+  }
+}

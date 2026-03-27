@@ -8,7 +8,7 @@ const setAsAdmin = async (req, res) => {
         const updatedUser = await User.findByIdAndUpdate(
             userId,
             { role: "admin"},
-            { new: true} //return true if updated document
+            { returnDocument: "after" }
         );
         console.log(updatedUser);
         if (!updatedUser) {

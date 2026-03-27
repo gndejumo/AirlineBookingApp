@@ -9,8 +9,11 @@ import Flights from "./pages/Flights/Flights";
 import FlightDetails from "./pages/FlightDetails/FlightDetails";
 import BookFlight from "./pages/BookFlight/BookFlight";
 import Profile from "./pages/Profile/Profile";
-import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
-import ManageFlights from "./pages/ManageFlights/ManageFlights";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+import ManageFlights from "./pages/Admin/ManageFlights";
+import BookingOverview from "./pages/Admin/BookingOverview";
+import UserManagement from "./pages/Admin/UserManagement";
+import Logout from "./pages/Logout/Logout";
 
 function App() {
   return (
@@ -21,6 +24,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="/flights" element={<Flights />} />
         <Route path="/flights/:id" element={<FlightDetails />} />
 
@@ -45,7 +49,7 @@ function App() {
         <Route
           path="/admin"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute adminOnly = {true}>
               <AdminDashboard />
             </ProtectedRoute>
           }
@@ -54,11 +58,27 @@ function App() {
         <Route
           path="/admin/manage-flights"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute adminOnly = {true}>
               <ManageFlights />
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/admin/booking-overview"
+          element={
+            <ProtectedRoute adminOnly = {true}>
+              <BookingOverview/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path ="/admin/user-management"
+          element={
+            <ProtectedRoute adminOnly = {true}>
+              <UserManagement/>
+            </ProtectedRoute>
+          }
+          />
       </Routes>
     </>
   );

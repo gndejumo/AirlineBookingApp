@@ -12,14 +12,14 @@ export const AuthProvider = ({ children }) => {
       const response = await loginUser(formData);
 
       // adjust depending on backend response
-      const token = response.data.user || response.data.token;
+      const token = response.data.token || response.data.access || response.data.accessToken;
 
       if (token) {
-        localStorage.setItem("token", token);
+        sessionStorage.setItem("token", token);
       }
 
       const profileResponse = await getProfile();
-      setUser(profileResponse.data);
+      setUser(profileResponse.data.user || profileResponse.data);
 
       return { success: true };
     } catch (error) {
@@ -32,13 +32,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     setUser(null);
   };
 
   const fetchProfile = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
 
       if (!token) {
         setLoading(false);
@@ -46,10 +46,10 @@ export const AuthProvider = ({ children }) => {
       }
 
       const response = await getProfile();
-      setUser(response.data);
+      setUser(response.data.user|| response.data);
     } catch (error) {
       console.error("Fetch profile error:", error);
-      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
       setUser(null);
     } finally {
       setLoading(false);

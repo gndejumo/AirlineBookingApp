@@ -1,0 +1,188 @@
+.user-management-page {
+  min-height: calc(100vh - 80px);
+  background: #f4f7fb;
+  padding: 40px 20px;
+}
+
+.user-management-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.user-management-container h1 {
+  font-size: 32px;
+  color: #14213d;
+  margin-bottom: 10px;
+}
+
+.user-management-subtitle {
+  color: #555;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+.loading-text,
+.empty-text {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  color: #555;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* TABLE WRAPPER */
+.table-wrapper {
+  background: white;
+  border-radius: 14px;
+  overflow-x: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 750px;
+}
+
+/* HEADER */
+.user-table thead {
+  background: #14213d;
+}
+
+.user-table thead th {
+  color: white;
+  padding: 16px;
+  font-size: 15px;
+}
+
+/* Center only Role & Actions headers */
+.user-table thead th:nth-child(3),
+.user-table thead th:nth-child(4) {
+  text-align: center;
+}
+
+/* BODY */
+.user-table tbody tr {
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s ease;
+}
+
+.user-table tbody tr:hover {
+  background: #f9fbff;
+}
+
+.user-table tbody td {
+  padding: 16px;
+  color: #333;
+  font-size: 15px;
+  vertical-align: middle;
+}
+
+/* Add spacing for text columns */
+.user-table tbody td:nth-child(1),
+.user-table tbody td:nth-child(2) {
+  padding-left: 24px;
+}
+
+/* Center Role & Actions columns */
+.user-table tbody td:nth-child(3),
+.user-table tbody td:nth-child(4) {
+  text-align: center;
+}
+
+/* ROLE BADGES */
+.role-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.admin-role {
+  background: rgba(131, 56, 236, 0.15);
+  color: #8338ec;
+}
+
+.user-role {
+  background: rgba(58, 134, 255, 0.15);
+  color: #3a86ff;
+}
+
+/* ACTION BUTTONS */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* UNIFORM BUTTON SIZE */
+.action-buttons button {
+  min-width: 120px;
+  text-align: center;
+}
+
+/* BUTTON BASE */
+.make-admin-btn,
+.make-user-btn,
+.delete-user-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* MAKE ADMIN */
+.make-admin-btn {
+  background: #8338ec;
+  color: white;
+}
+
+.make-admin-btn:hover {
+  background: #9b5de5;
+  transform: translateY(-2px);
+}
+
+/* MAKE USER */
+.make-user-btn {
+  background: #14213d;
+  color: white;
+}
+
+.make-user-btn:hover {
+  background: #1f335c;
+  transform: translateY(-2px);
+}
+
+/* DELETE */
+.delete-user-btn {
+  background: #e63946;
+  color: white;
+}
+
+.delete-user-btn:hover {
+  background: #ef233c;
+  transform: translateY(-2px);
+}
+
+.delete-user-btn:disabled {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* CURRENT USER */
+.you-badge {
+  color: #2ec4b6;
+  font-weight: 700;
+  margin-left: 6px;
+}
+
+.current-user-row {
+  background: #f0fffb;
+}

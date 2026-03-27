@@ -2,7 +2,11 @@ import api from './api'
 
 
 const setAsAdmin = (userId) => {
-    return api.patch(`/admin/${userId}`)
+    return api.patch(`/admin/setAsAdmin/${userId}`)
+}
+
+const makeUser = (userId) => {
+    return api.patch(`/admin/makeUser/${userId}`)
 }
 
 const getAllUsers = () => {
@@ -13,4 +17,8 @@ const deleteUser = (userId) => {
     return api.delete(`/admin/users/${userId}`)
 }
 
-export {setAsAdmin, getAllUsers, deleteUser}
+const getDashboardStats = () => {
+    return api.get('/admin/dashboard-stats')
+}
+
+export {setAsAdmin, getAllUsers, deleteUser, getDashboardStats, makeUser}

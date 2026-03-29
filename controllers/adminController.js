@@ -65,6 +65,40 @@ const getAllUsers = (_req, res, next) => {
     .catch(err => next(err))
 }
 
+const getAllBookings = async (_req, res, next) => {
+try {
+    const bookings = await Booking.find()
+      .populate("userId", "firstName lastName") // fields you need
+      .populate("flightId");                   // critical for duration
+
+    res.json({ bookings });
+  } catch (err) {
+    next(err)
+  } 
+}
+
+const cancelBookingAdmin = async(req, res, next) => {
+    try {
+        const bookingId = req.params.id
+        const booking = await Booking.findById(bookingId);
+
+        if (!booking) {
+            return res.status(404).send({
+                message: "Booking not Found"
+            })
+        }
+        booking.status = "cancelled";
+        await booking.save();
+        res.status(200).send({
+            message: "Booking cancelled by admin",
+            booking,
+        })
+    } catch(err) {
+        next(err)
+    }
+}
+
+
 const deleteUser = (req, res, next) => {
     return User.findByIdAndDelete(req.params.id)
     .then(user => {
@@ -85,6 +119,8 @@ const getDashboardStats = async (_req, res, next) => {
         const totalUsers = await User.countDocuments();
         const totalFlights = await Flight.countDocuments();
         const totalBookings = await Booking.countDocuments();
+        const totalAdmins = await User.countDocuments({role: "admin"});
+        const totalRegularUsers = await User.countDocuments({role: "user"})
 
         const revenueData = await Booking.aggregate([
             { $match: { status: "confirmed" } },
@@ -102,7 +138,9 @@ const getDashboardStats = async (_req, res, next) => {
             totalUsers,
             totalFlights,
             totalBookings,
-            totalRevenue
+            totalRevenue,
+            totalAdmins,
+            totalRegularUsers
         });
 
     } catch (err) {
@@ -110,4 +148,4 @@ const getDashboardStats = async (_req, res, next) => {
     }
 };
 
-module.exports = {setAsAdmin,  getAllUsers, deleteUser, getDashboardStats, makeUser}
+module.exports = {setAsAdmin,  getAllUsers, deleteUser, getDashboardStats, makeUser, getAllBookings, cancelBookingAdmin}

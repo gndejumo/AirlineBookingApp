@@ -49,7 +49,7 @@ function AdminDashboard() {
             </div>
             <div>
               <h3>{stats.totalUsers}</h3>
-              <p>Total Users</p>
+              <p>Admins:{stats.totalAdmins || 0} | Users: {stats.totalRegularUsers}</p>
             </div>
           </div>
 

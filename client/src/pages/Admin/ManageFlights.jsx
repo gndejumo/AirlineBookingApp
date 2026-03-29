@@ -31,7 +31,8 @@ function ManageFlights() {
     try {
       setLoading(true);
       const response = await getAllFlights();
-      setFlights(response.data.flights || response.data || []);
+      setFlights(response.data.flights || []);
+      
     } catch (error) {
       console.error("Error fetching flights:", error);
     } finally {

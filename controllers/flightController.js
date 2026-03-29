@@ -3,7 +3,7 @@ const Flight = require('../models/Flight');
 
 const getAllFlights = (_req, res, next) => {
     return Flight.find({})
-    .then((flights) => res.send(flights))
+    .then((flights) => res.send({flights: flights}))
     .catch(err => next(err));
 }
 
@@ -81,15 +81,26 @@ const createFlight = async (req, res, next) => {
 };
 
 const updateFlight = (req, res, next) => {
-    const {origin, destination, price} = req.body
+    const {
+        flightNumber, 
+        origin, 
+        destination,
+        departureDate,
+        arrivalDate, 
+        price,
+        seats} = req.body
 
     const updatedFlight = {
+        flightNumber,
         origin,
         destination,
-        price
-    }
+        departureDate,
+        arrivalDate,
+        price,
+        seats
+    };
     console.log(updatedFlight);
-    return Flight.findByIdAndUpdate(req.params.id, updatedFlight, {new: true, runValidators: true})
+    return Flight.findByIdAndUpdate(req.params.id, updatedFlight, {returnDocument: 'after', runValidators: true})
     .then(flight => {
         if (!flight) {
             return res.status(404).send({

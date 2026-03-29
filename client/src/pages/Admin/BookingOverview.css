@@ -1,0 +1,200 @@
+  .booking-page {
+    min-height: calc(100vh - 80px);
+    background: #f4f7fb;
+    padding: 40px 20px;
+  }
+
+  .booking-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .booking-container h1 {
+    font-size: 32px;
+    color: #14213d;
+    margin-bottom: 10px;
+  }
+
+  .booking-subtitle {
+    color: #555;
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+
+  .loading-text,
+  .empty-text {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    color: #555;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  /* TABLE */
+  .table-wrapper {
+    background: transparent;
+    border-radius: 14px;
+  }
+
+  .booking-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px; /* card-like spacing */
+    min-width: 750px;
+  }
+
+  .booking-table thead {
+    background: #14213d;
+  }
+
+  .booking-table thead th {
+    color: white;
+    padding: 16px;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .booking-row {
+    background: white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: 0.3s;
+  }
+
+  .booking-row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .booking-table tbody td {
+    padding: 16px 20px;
+    vertical-align: top;
+  }
+
+  /* STATUS BADGES */
+  .status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  .status-badge.confirmed {
+    background: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+  }
+
+  .status-badge.pending {
+    background: rgba(255, 193, 7, 0.2);
+    color: #fca311;
+  }
+
+  .status-badge.cancelled {
+    background: rgba(230, 57, 70, 0.2);
+    color: #e63946;
+  }
+
+  /* FLIGHT ROUTE / CARD CONTENT */
+  .user-booking-group {
+    margin-bottom: 30px;
+  }
+
+  .user-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #14213d;
+    margin-bottom: 10px;
+  }
+
+  .booking-card {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: 0.3s;
+  }
+
+  .booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .booking-header h2 {
+    font-size: 22px;
+    color: #14213d;
+  }
+
+  .airport {
+    font-size: 12px;
+    color: #777;
+  }
+
+  .booking-middle {
+    text-align: center;
+  }
+
+  .duration {
+    font-size: 14px;
+    color: #3a86ff;
+    font-weight: 600;
+  }
+
+  .booking-divider {
+    border-top: 2px dashed #ddd;
+    margin: 15px 0;
+  }
+
+  .booking-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .detail-item {
+    text-align: left;
+  }
+
+  .label {
+    font-size: 12px;
+    color: #777;
+  }
+
+  .detail-value {
+    font-size: 14px;
+    color: #333;
+  }
+
+  .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2ec4b6;
+  }
+
+  /* ACTION */
+  .booking-actions {
+    margin-top: 10px;
+    text-align: right;
+  }
+
+  .cancel-btn {
+    background: #ff9f1c;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .cancel-btn:hover:not(:disabled) {
+    background: #ffb703;
+  }
+
+  .cancel-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }

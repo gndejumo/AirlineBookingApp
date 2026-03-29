@@ -1,200 +1,179 @@
-  .booking-page {
-    min-height: calc(100vh - 80px);
-    background: #f4f7fb;
-    padding: 40px 20px;
-  }
+.booking-page {
+  min-height: calc(100vh - 80px);
+  background: #f4f7fb;
+  padding: 40px 20px;
+}
 
-  .booking-container {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+.booking-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-  .booking-container h1 {
-    font-size: 32px;
-    color: #14213d;
-    margin-bottom: 10px;
-  }
+.booking-container h1 {
+  font-size: 32px;
+  color: #14213d;
+  margin-bottom: 10px;
+}
 
-  .booking-subtitle {
-    color: #555;
-    margin-bottom: 30px;
-    font-size: 16px;
-  }
+.booking-subtitle {
+  color: #555;
+  margin-bottom: 30px;
+}
 
-  .loading-text,
-  .empty-text {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    color: #555;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  }
+/* TABLE WRAPPER */
+.table-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
 
-  /* TABLE */
-  .table-wrapper {
-    background: transparent;
-    border-radius: 14px;
-  }
+/* USER GROUP */
+.user-booking-group {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
 
-  .booking-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 12px; /* card-like spacing */
-    min-width: 750px;
-  }
+.user-title {
+  margin-bottom: 15px;
+  color: #14213d;
+}
 
-  .booking-table thead {
-    background: #14213d;
-  }
+/* TABLE */
+.booking-table {
+  width: 100%;
+  border-collapse: collapse;
+}
 
-  .booking-table thead th {
-    color: white;
-    padding: 16px;
-    font-size: 15px;
-    text-align: center;
-  }
+.booking-table thead {
+  background: #14213d;
+}
 
-  .booking-row {
-    background: white;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    border-radius: 14px;
-    overflow: hidden;
-    transition: 0.3s;
-  }
+.booking-table th {
+  color: white;
+  padding: 14px;
+  font-size: 14px;
+  text-align: center;
+}
 
-  .booking-row:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-  }
+.booking-table td {
+  padding: 18px 14px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+  vertical-align: middle;
+}
 
-  .booking-table tbody td {
-    padding: 16px 20px;
-    vertical-align: top;
-  }
+/* ROW HOVER */
+.booking-row:hover {
+  background: #f9fbff;
+}
 
-  /* STATUS BADGES */
-  .status-badge {
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: capitalize;
-  }
+/* ✈️ FLIGHT HEADER (FIXED ALIGNMENT) */
+.booking-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
 
-  .status-badge.confirmed {
-    background: rgba(46, 204, 113, 0.2);
-    color: #2ecc71;
-  }
+.booking-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
 
-  .status-badge.pending {
-    background: rgba(255, 193, 7, 0.2);
-    color: #fca311;
-  }
+.booking-middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .status-badge.cancelled {
-    background: rgba(230, 57, 70, 0.2);
-    color: #e63946;
-  }
+.duration {
+  font-size: 13px;
+  color: #666;
+  font-weight: 600;
+  background: #eef3ff;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
 
-  /* FLIGHT ROUTE / CARD CONTENT */
-  .user-booking-group {
-    margin-bottom: 30px;
-  }
+/* DETAILS */
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .user-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: #14213d;
-    margin-bottom: 10px;
-  }
+.detail-value {
+  font-size: 14px;
+  color: #333;
+}
 
-  .booking-card {
-    background: white;
-    border-radius: 18px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    transition: 0.3s;
-  }
+/* PRICE */
+.price {
+  font-weight: 700;
+  font-size: 15px;
+}
 
-  .booking-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+/* SMALL TEXT */
+.small-text {
+  font-size: 12px;
+  color: #777;
+}
 
-  .booking-header h2 {
-    font-size: 22px;
-    color: #14213d;
-  }
+/* STATUS */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
 
-  .airport {
-    font-size: 12px;
-    color: #777;
-  }
+.status-badge.confirmed {
+  background: rgba(46, 196, 182, 0.15);
+  color: #2ec4b6;
+}
 
-  .booking-middle {
-    text-align: center;
-  }
+.status-badge.cancelled {
+  background: rgba(230, 57, 70, 0.15);
+  color: #e63946;
+}
 
-  .duration {
-    font-size: 14px;
-    color: #3a86ff;
-    font-weight: 600;
-  }
+/* ACTION BUTTON */
+.booking-actions {
+  display: flex;
+  justify-content: center;
+}
 
-  .booking-divider {
-    border-top: 2px dashed #ddd;
-    margin: 15px 0;
-  }
+.cancel-btn {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #e63946;
+  color: white;
+  transition: 0.3s;
+  min-width: 100px;
+}
 
-  .booking-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.cancel-btn:hover {
+  background: #ef233c;
+}
 
-  .detail-item {
-    text-align: left;
-  }
+.cancel-btn:disabled {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
 
-  .label {
-    font-size: 12px;
-    color: #777;
-  }
-
-  .detail-value {
-    font-size: 14px;
-    color: #333;
-  }
-
-  .price {
-    font-size: 18px;
-    font-weight: bold;
-    color: #2ec4b6;
-  }
-
-  /* ACTION */
-  .booking-actions {
-    margin-top: 10px;
-    text-align: right;
-  }
-
-  .cancel-btn {
-    background: #ff9f1c;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    font-weight: 500;
-  }
-
-  .cancel-btn:hover:not(:disabled) {
-    background: #ffb703;
-  }
-
-  .cancel-btn:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-  }
+/* LOADING / EMPTY */
+.loading-text,
+.empty-text {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}

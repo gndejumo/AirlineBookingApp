@@ -39,11 +39,17 @@ const getFlightStatus = (departureDate, status) => {
   if (isNaN(departure.getTime())) return "Invalid date";
   const diff = departure - now;
   if (diff <= 0) return "Departed";
-  const minutes = Math.floor(diff / 60000);
-  const hours = Math.floor(minutes / 60);
-  return hours < 1
-    ? `Flight in ${minutes} mins`
-    : `Flight in ${hours}h ${minutes % 60}m`;
+  const totalMinutes = Math.floor(diff / 60000);
+  const days = Math.floor(totalMinutes / (60 * 24));
+  const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
+  const minutes = totalMinutes % 60;
+  if (days > 0) {
+    return `Flight in ${days}d ${hours}h`;
+  } else if (hours > 0) {
+    return `Flight in ${hours}h ${minutes}m`;
+  } else {
+    return `Flight in ${minutes} mins`;
+  }
 };
 
   const handleCancelBooking = async (bookingId) => {

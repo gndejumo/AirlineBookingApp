@@ -14,7 +14,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <Link to="/">AirlineBookingApp</Link>
+        <Link to="/">LesGoPH</Link>
       </div>
 
       <div className="navbar-links">

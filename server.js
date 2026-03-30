@@ -17,12 +17,11 @@ const bookingRoutes = require("./routes/bookingRoutes")
 app.get('/', (_req, res) => {
     res.send('Welcome from express!')
 })
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: "https://lesgophairlines.vercel.app", // Allow your frontend
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 // RATE LIMITER
 app.use(rateLimiter);

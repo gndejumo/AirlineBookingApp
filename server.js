@@ -18,8 +18,7 @@ app.get('/', (_req, res) => {
     res.send('Welcome from express!')
 })
 app.use(cors({
-  origin: "https://lesgophairlines.vercel.app", // Allow your frontend
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: ["https://lesgophairlines.vercel.app", "http://localhost:5173"],
   credentials: true
 }));
 app.use(express.json());

@@ -30,6 +30,22 @@ function Profile() {
     fetchProfileAndBookings();
   }, []);
 
+  // 🔥 Flight Status Logic
+const getFlightStatus = (departureDate, status) => {
+  if (status === "cancelled") return "Cancelled";
+  if (!departureDate) return "No departure info";
+  const now = new Date();
+  const departure = new Date(departureDate);
+  if (isNaN(departure.getTime())) return "Invalid date";
+  const diff = departure - now;
+  if (diff <= 0) return "Departed";
+  const minutes = Math.floor(diff / 60000);
+  const hours = Math.floor(minutes / 60);
+  return hours < 1
+    ? `Flight in ${minutes} mins`
+    : `Flight in ${hours}h ${minutes % 60}m`;
+};
+
   const handleCancelBooking = async (bookingId) => {
     try {
       await api.patch(`/users/bookings/${bookingId}/cancel`);
@@ -52,77 +68,117 @@ function Profile() {
     return <h2 className="profile-status">Loading profile...</h2>;
   }
 
+const handleDeleteBooking = async (bookingId) => {
+  const confirmDelete = window.confirm("Are you sure you want to delete this booking?");
+  if (!confirmDelete) return;
+
+  try {
+    await api.delete(`/users/bookings/${bookingId}/delete`);
+    setMessage("Booking deleted successfully");
+
+    setBookings((prev) =>
+      prev.filter((booking) => booking._id !== bookingId)
+    );
+  } catch (error) {
+    console.error(error);
+    setMessage("Failed to delete booking");
+  }
+};
+
   return (
     <div className="profile-page">
+      {/* PROFILE CARD */}
       <div className="profile-card">
         <h1>My Profile</h1>
 
         {message && <p className="profile-message">{message}</p>}
 
         <div className="profile-info">
-          <p>
-            <strong>First Name:</strong> {profile?.firstName || "N/A"}
-          </p>
-          <p>
-            <strong>Last Name:</strong> {profile?.lastName || "N/A"}
-          </p>
-          <p>
-            <strong>Email:</strong> {profile?.email || "N/A"}
-          </p>
-          <p>
-            <strong>Role:</strong> {profile?.role || "user"}
-          </p>
+          <p><strong>First Name:</strong> {profile?.firstName || "N/A"}</p>
+          <p><strong>Last Name:</strong> {profile?.lastName || "N/A"}</p>
+          <p><strong>Email:</strong> {profile?.email || "N/A"}</p>
+          <p><strong>Role:</strong> {profile?.role || "user"}</p>
         </div>
       </div>
 
+      {/* BOOKINGS */}
       <div className="bookings-section">
         <h2>My Bookings</h2>
 
         {bookings.length === 0 ? (
-          <p className="profile-status">No bookings found.</p>
+          <p className="empty-state">
+            ✈️ You have no bookings yet. Book your first flight!
+          </p>
         ) : (
           <div className="bookings-grid">
-            {bookings.map((booking) => (
-              <div key={booking._id} className="booking-card">
-                <p>
-                  <strong>Flight ID:</strong>{" "}
-                  {booking.flightId?._id || booking.flightId || "N/A"}
-                </p>
-                <p>
-                  <strong>Passengers:</strong> {booking.passengers}
-                </p>
-                <p>
-                  <strong>Total Price:</strong> ₱{booking.totalPrice}
-                </p>
-                <p>
-                  <strong>Status:</strong>{" "}
-                  <span
-                    className={
-                      booking.status === "cancelled"
-                        ? "status-cancelled"
-                        : "status-confirmed"
-                    }
-                  >
-                    {booking.status}
-                  </span>
-                </p>
-                <p>
-                  <strong>Booking Date:</strong>{" "}
-                  {booking.bookingDate
-                    ? new Date(booking.bookingDate).toLocaleString()
-                    : "N/A"}
-                </p>
+            {bookings.map((booking) => {
+              const flight = booking.flightId;
 
-                {booking.status !== "cancelled" && (
-                  <button
-                    className="cancel-btn"
-                    onClick={() => handleCancelBooking(booking._id)}
-                  >
-                    Cancel Booking
-                  </button>
-                )}
-              </div>
-            ))}
+              return (
+                <div key={booking._id} className="booking-card">
+                  <h3>
+                    {flight?.origin || "N/A"} → {flight?.destination || "N/A"}
+                  </h3>
+
+                  <p>
+                    <strong>Departure:</strong>{" "}
+                    {flight?.departureDate 
+                      ? new Date(flight.departureDate).toLocaleString()
+                      : "N/A"}
+                  </p>
+
+                  <p>
+                    <strong>Passengers:</strong> {booking.passengers}
+                  </p>
+
+                  <p>
+                    <strong>Total:</strong> ₱{booking.totalPrice}
+                  </p>
+
+                  {/* 🔥 Dynamic Status */}
+                  <p>
+                    <strong>Status:</strong>{" "}
+                    <span
+                      className={`status ${
+                        booking.status  === "cancelled"
+                          ? "cancelled"
+                          : "active"
+                      }`}
+                    >
+                      {getFlightStatus(
+                        flight?.departureDate,
+                        booking.status
+                      )}
+                    </span>
+                  </p>
+
+                  <p className="booking-date">
+                    Booked on:{" "}
+                    {booking.bookingDate
+                      ? new Date(booking.bookingDate).toLocaleString()
+                      : "N/A"}
+                  </p>
+
+                  <div className="booking-actions">
+                    {booking.status !== "cancelled" && (
+                      <button
+                        className="cancel-btn"
+                        onClick={() => handleCancelBooking(booking._id)}
+                      >
+                        Cancel
+                      </button>
+                    )}
+
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDeleteBooking(booking._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         )}
       </div>

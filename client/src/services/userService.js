@@ -15,5 +15,8 @@ const logoutUser = () => {
     return api.post('/users/logout');
 };
 
+const deleteBooking = (bookingId) => {
+    return api.delete(`/users/bookings/${bookingId}`);
+}
 
-export {updateProfile, getUserBookings, cancelBooking, logoutUser}
+export {updateProfile, getUserBookings, cancelBooking, logoutUser, deleteBooking}

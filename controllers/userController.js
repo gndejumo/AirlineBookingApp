@@ -59,5 +59,23 @@ const cancelBooking = (req, res, next) => {
     .catch(err => next(err));
 }
 
+//delete Booking
+const deleteBooking = async (req, res, next) => {
+    try {
+        const bookingId = req.params.id;
+        const booking = await Booking.findByIdAndDelete(bookingId)
 
-module.exports = {updateProfile, getUserBookings, cancelBooking}
+        if (!booking) {
+            return res.status(404).json({
+                message:"Booking not found"})
+        }
+            return res.status(200).json ({
+                message: "Booking successfully deleted"
+            })
+    } catch(err ) {
+            next(err)
+        }
+}
+
+
+module.exports = {updateProfile, getUserBookings, cancelBooking, deleteBooking}

@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { getAllUsers, setAsAdmin, deleteUser, makeUser } from "../../services/adminService";
 import { useAuth } from "../../context/AuthContext";
 import "./UserManagement.css";

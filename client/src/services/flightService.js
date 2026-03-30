@@ -32,6 +32,13 @@ const deleteFlight = (flightId) => {
     return api.delete(`/flights/${flightId}`);
 };
 
+const getAvailableFlights = () => {
+    return api.get (`/flight/available`)
+}
+const getPastFlights = () => {
+    return api.get (`/flight/history`)
+}
+
 export {
     getAllFlights,
     searchFlights,
@@ -40,5 +47,5 @@ export {
     getAvailableSeats,
     createFlight,
     updateFlight,
-    deleteFlight
+    deleteFlight,getAvailableFlights,getPastFlights
 };

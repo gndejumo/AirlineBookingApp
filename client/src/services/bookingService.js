@@ -17,8 +17,8 @@ const getBookingById = (userId) => {
     return api.get(`/bookings/${userId}`)
 }
 
-const bookFlight = () => {
-    return api.post('/bookings/')
+const bookFlight = (data) => {
+    return api.post('/bookings', data)
 }
 
 

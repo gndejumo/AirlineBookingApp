@@ -14,6 +14,7 @@ import ManageFlights from "./pages/Admin/ManageFlights";
 import BookingOverview from "./pages/Admin/BookingOverview";
 import UserManagement from "./pages/Admin/UserManagement";
 import Logout from "./pages/Logout/Logout";
+import FlightsHistory from "./pages/Flights/FlightHistory";
 
 function App() {
   return (
@@ -79,6 +80,10 @@ function App() {
             </ProtectedRoute>
           }
           />
+          <Route path="/flights/history" 
+          element={
+          <FlightsHistory />}
+           />
       </Routes>
     </>
   );

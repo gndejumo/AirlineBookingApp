@@ -1,8 +1,12 @@
+/* ===== Page Layout ===== */
 .flights-page {
   padding: 40px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
 }
 
 .flights-header {
+  text-align: center;
   margin-bottom: 24px;
 }
 
@@ -13,19 +17,77 @@
 
 .flights-header p {
   color: #555;
+  font-size: 1rem;
 }
 
+/* ===== Toggle Buttons ===== */
+.flights-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 0.5rem;
+  width: fit-content;
+  margin: 2rem auto 2.5rem;
+  gap: 0.6rem;
+}
+
+.flights-toggle button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.7rem 1.4rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  color: #14213d;
+  background-color: #f1f3f5;
+  transition: all 0.25s ease;
+}
+
+.flights-toggle button:hover {
+  background-color: #e0e7ff;
+  transform: translateY(-2px);
+}
+
+.active-toggle {
+  background: linear-gradient(135deg, #007bff, #00b4d8);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.active-toggle:hover {
+  background: linear-gradient(135deg, #0066cc, #0096c7);
+}
+
+.flights-toggle button:active {
+  transform: scale(0.97);
+}
+
+.flights-toggle button i {
+  font-size: 1.1rem;
+}
+
+/* ===== Grid Layout ===== */
 .flights-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .status-message {
   text-align: center;
   margin-top: 40px;
+  color: #6c757d;
 }
 
 .status-message.error {
-  color: red;
+  color: #ff4d4d;
 }

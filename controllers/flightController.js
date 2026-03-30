@@ -173,4 +173,24 @@ const getAvailableSeats = (req, res, next) => {
     .catch(err => next(err));
 }
 
-module.exports = {getAllFlights, getFlightById, searchFlights, filterFlights, getAvailableSeats,createFlight, updateFlight, deleteFlight}
+const getAvailableFlights = async (req, res, next) => {
+  try {
+    const now = new Date();
+    const flights = await Flight.find({ departureDate: { $gt: now } });
+    res.status(200).send({ flights });
+  } catch (err) {
+    next(err);
+  }
+};
+// Fetch departed flights (for history)
+const getPastFlights = async (req, res, next) => {
+  try {
+    const now = new Date();
+    const flights = await Flight.find({ departureDate: { $lte: now } });
+    res.status(200).send({ flights });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = {getAllFlights, getFlightById, searchFlights, filterFlights, getAvailableSeats,createFlight, updateFlight, deleteFlight, getAvailableFlights,getPastFlights }

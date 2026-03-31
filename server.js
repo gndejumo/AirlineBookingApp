@@ -25,6 +25,8 @@ app.use(cors({
   credentials: true,
 }));
 app.use(express.json());
+//  TRUST PROXY (FIXES YOUR ERROR)
+app.set('trust proxy', 1);
 // RATE LIMITER
 app.use(rateLimiter);
 // BACKEND ROUTES

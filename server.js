@@ -18,7 +18,10 @@ app.get('/', (_req, res) => {
     res.send('Welcome from express!')
 })
 app.use(cors({
-  origin: 'https://lesgophairlines.vercel.app',
+  origin: [
+    'http://localhost:5173', // local dev
+    'https://lesgophairlines.vercel.app' // production
+  ],
   credentials: true,
 }));
 app.use(express.json());

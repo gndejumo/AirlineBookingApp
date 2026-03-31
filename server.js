@@ -20,7 +20,7 @@ app.get('/', (_req, res) => {
 app.use(cors({
   origin: [
     'http://localhost:5173', // local dev
-    'https://lesgophairlines.vercel.app' // production
+    'https://lesgoph.vercel.app' // production
   ],
   credentials: true,
 }));
@@ -28,7 +28,7 @@ app.use(express.json());
 //  TRUST PROXY (FIXES YOUR ERROR)
 app.set('trust proxy', 1);
 // RATE LIMITER
-app.use(rateLimiter);
+app.use(rateLimiter); 
 // BACKEND ROUTES
 app.use('/api/auth', authRoutes);
 app.use('/api/admin',adminRoutes)

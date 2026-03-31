@@ -33,10 +33,10 @@ const deleteFlight = (flightId) => {
 };
 
 const getAvailableFlights = () => {
-    return api.get (`/flight/available`)
+    return api.get (`/flights/available`)
 }
 const getPastFlights = () => {
-    return api.get (`/flight/history`)
+    return api.get (`/flights/history`)
 }
 
 export {

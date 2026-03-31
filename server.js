@@ -18,8 +18,8 @@ app.get('/', (_req, res) => {
     res.send('Welcome from express!')
 })
 app.use(cors({
-  origin: ["https://lesgophairlines.vercel.app", "http://localhost:5173"],
-  credentials: true
+  origin: 'https://lesgophairlines.vercel.app',
+  credentials: true,
 }));
 app.use(express.json());
 // RATE LIMITER

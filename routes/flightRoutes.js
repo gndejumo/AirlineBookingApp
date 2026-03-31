@@ -10,14 +10,14 @@ router.get('/', flightController.getAllFlights)
 router.get('/search', flightController.searchFlights)
 // filter flights
 router.get('/filter', flightController.filterFlights)
-// get flight by Id
-router.get('/:id', validateObjectId, flightController.getFlightById)
-// get available seats
-router.get('/:id/seats',validateObjectId, flightController.getAvailableSeats)
 // get the available flights not yet departed
 router.get('/available', flightController.getAvailableFlights);
 // get past flight already departed
 router.get('/history', flightController.getPastFlights);
+// get flight by Id
+router.get('/:id', validateObjectId, flightController.getFlightById)
+// get available seats
+router.get('/:id/seats',validateObjectId, flightController.getAvailableSeats)
 // create flight
 router.post('/', verify, verifyAdmin, flightController.createFlight)
 // update flight

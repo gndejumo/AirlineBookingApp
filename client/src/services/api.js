@@ -1,27 +1,28 @@
 import axios from 'axios';
 
-console.log("ALL ENV:", import.meta.env);
-console.log("API URL:", import.meta.env.VITE_API_URL);
+// Pick the API URL safely
+// 1️⃣ Try environment variable (Vite)
+// 2️⃣ Fallback to localhost for local dev
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
-const api = axios.create ({
-    baseURL: import.meta.env.VITE_API_URL,
-    headers: {
-        "Content-Type": "application/json",
-    },
+console.log("Using API URL:", API_URL);
+
+// Create axios instance
+const api = axios.create({
+  baseURL: API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
-console.log("Axios Base URL:", api.defaults.baseURL);
-// Automatic attach token if available
+// Automatically attach token if available
 api.interceptors.request.use((config) => {
-    const token = sessionStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
-
-
-
 
 export default api;

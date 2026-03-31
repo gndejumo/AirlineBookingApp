@@ -19,7 +19,7 @@ app.get('/', (_req, res) => {
 })
 app.use(cors({
   origin: [
-    'http://localhost:5173', // local dev
+    'http://localhost:3000', // local dev
     'https://lesgoph.vercel.app' // production
   ],
   credentials: true,

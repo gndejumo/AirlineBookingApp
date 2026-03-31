@@ -38,3 +38,11 @@
 | Duplicate email | 409 |
 | Too many requests | 429 |
 | Server error | 500 |
+
+Key differences
+Create          React App	            Vite
+Command	        npx create-react-app	npm create vite@latest
+Build tool	    Webpack	                Vite
+Env syntax	    process.env.REACT_APP_*	import.meta.env.VITE_*
+Speed	        Slower	                Much faster
+Config file	    None needed	            vite.config.js

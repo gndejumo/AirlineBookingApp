@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+console.log("ALL ENV:", import.meta.env);
 console.log("API URL:", import.meta.env.VITE_API_URL);
-console.log(api.defaults.baseURL);
+
 const api = axios.create ({
     baseURL: import.meta.env.VITE_API_URL,
     headers: {
@@ -9,6 +10,7 @@ const api = axios.create ({
     },
 });
 
+console.log("Axios Base URL:", api.defaults.baseURL);
 // Automatic attach token if available
 api.interceptors.request.use((config) => {
     const token = sessionStorage.getItem("token");

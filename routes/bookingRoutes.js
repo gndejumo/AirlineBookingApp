@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const bookingController = require ('../controllers/bookingController')
-const {verify, verifyAdmin} = require('../middlewares/adminMiddleware');
+const {verify} = require('../middlewares/adminMiddleware');
 const { validateObjectId } = require('../middlewares/validateObjectId');
 
 router.post('/calculate', verify, bookingController.calculatePrice);

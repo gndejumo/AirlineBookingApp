@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext"; // adjust path if needed
 import { getAllFlights } from "../../services/flightService";
 import { getMyBookings } from "../../services/bookingService";
 import FlightCard from "../../components/FlightCard/FlightCard";
@@ -10,7 +11,7 @@ function Flights() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [activeTab, setActiveTab] = useState("available"); // available, bookings, history
-  const [userRole, setUserRole] = useState("user"); // default
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchUserAndData = async () => {
@@ -24,9 +25,6 @@ function Flights() {
         const bookingsRes = await getMyBookings();
         setBookings(bookingsRes.data.myBookings || []);
 
-        // 3️⃣ Get user role from session
-        const user = JSON.parse(sessionStorage.getItem("user"));
-        if (user?.role) setUserRole(user.role);
       } catch (err) {
         console.error(err);
         setError("Failed to load data");
@@ -82,7 +80,7 @@ function Flights() {
             Bookings History
           </button>
 
-          {userRole === "admin" && (
+          {user?.role === "admin" && (
             <button
               className={activeTab === "history" ? "active-toggle" : ""}
               onClick={() => setActiveTab("history")}

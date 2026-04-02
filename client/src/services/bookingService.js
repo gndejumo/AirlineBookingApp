@@ -21,8 +21,8 @@ const bookFlight = (data) => {
     return api.post('/bookings', data)
 }
 
-const getMyBookings = (data) => {
-    return api.get('/bookings/my-history', data)
+const getMyBookings = () => {
+    return api.get('/bookings/my-history')
 }
 
 export {calculatePrice, paymentProcessing, checkSeatAvailability,

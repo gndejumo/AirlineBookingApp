@@ -122,5 +122,20 @@ const paymentProcessing = (req, res, next) => {
     .catch(err => next(err));
 }
 
+const getMyBookings = async (req, res, next) => {
+    try {
+        const userId = req.user.id
+        const myBookings = await Booking.find({userId: userId})
+        .populate("flightId");
+        if (!myBookings || myBookings.length === 0 ) {
+            return res.status(404).send({message: "Booking not found", 
+                myBookings: []
+            })
+        }   res.status(200).json({myBookings});
+    } catch (err ) {
+        next(err)
+    }
+}
 
-module.exports = {bookFlight, getBookingById, calculatePrice, checkSeatAvailability, paymentProcessing}
+
+module.exports = {bookFlight, getBookingById, calculatePrice, checkSeatAvailability, paymentProcessing, getMyBookings}

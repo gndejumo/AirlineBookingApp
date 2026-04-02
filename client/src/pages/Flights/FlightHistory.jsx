@@ -39,7 +39,7 @@ function FlightsHistory() {
   return (
     <div className="flights-page">
       <div className="flights-header">
-        <h1>Flight History</h1>
+        <h1>Flight  </h1>
         <p>List of departed flights.</p>
       </div>
 

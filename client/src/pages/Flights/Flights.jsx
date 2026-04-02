@@ -1,89 +1,115 @@
 import { useEffect, useState } from "react";
 import { getAllFlights } from "../../services/flightService";
+import { getMyBookings } from "../../services/bookingService";
 import FlightCard from "../../components/FlightCard/FlightCard";
 import "./Flights.css";
 
 function Flights() {
   const [flights, setFlights] = useState([]);
-  const [filteredFlights, setFilteredFlights] = useState([]);
+  const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [showHistory, setShowHistory] = useState(false);
+
+  const user = JSON.parse(sessionStorage.getItem("user"));
 
   useEffect(() => {
-    const fetchFlights = async () => {
+    const fetchData = async () => {
       try {
-        const response = await getAllFlights();
+        const [flightsRes, bookingsRes] = await Promise.all([
+          getAllFlights(),
+          getMyBookings(),
+        ]);
 
-        // Safely extract the flights array
-        const allFlights = response.data.flights || response.data || [];
+        const allFlights = flightsRes.data.flights || [];
+        const myBookings = bookingsRes.data.myBookings || [];
 
         setFlights(allFlights);
-      } catch (error) {
-        console.error(error);
-        setError("Failed to load flights");
+        setBookings(myBookings);
+      } catch (err) {
+        console.error(err);
+        setError("Failed to load data");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchFlights();
+    fetchData();
   }, []);
 
-  useEffect(() => {
-    if (flights.length === 0) return;
+  const now = new Date();
 
-    const now = new Date();
+  // ✅ Available flights
+  const availableFlights = flights.filter(
+    (f) => new Date(f.departureDate) > now
+  );
 
-    const result = showHistory
-      ? flights.filter((flight) => new Date(flight.departureDate) <= now)
-      : flights.filter((flight) => new Date(flight.departureDate) > now);
+  // ✅ Admin: all past flights
+  const pastFlights = flights.filter(
+    (f) => new Date(f.departureDate) <= now
+  );
 
-    setFilteredFlights(result);
-  }, [flights, showHistory]);
+  // ✅ User bookings (past + future)
+  const myBookings = bookings;
 
-  if (loading) return <h2 className="status-message">Loading flights...</h2>;
+  if (loading) return <h2 className="status-message">Loading...</h2>;
   if (error) return <h2 className="status-message error">{error}</h2>;
 
   return (
     <div className="flights-page">
+      
+      {/* ✈️ AVAILABLE FLIGHTS */}
       <div className="flights-header">
-        <h1>{showHistory ? "Flight History" : "Available Flights"}</h1>
-        <p>
-          {showHistory
-            ? "See all departed flights."
-            : "Choose your next destination."}
-        </p>
-
-        {/* Toggle Buttons */}
-        <div className="flights-toggle">
-          <button
-            className={!showHistory ? "active-toggle" : ""}
-            onClick={() => setShowHistory(false)}
-          >
-            Available Flights
-          </button>
-          <button
-            className={showHistory ? "active-toggle" : ""}
-            onClick={() => setShowHistory(true)}
-          >
-            Flight History
-          </button>
-        </div>
+        <h1>Available Flights</h1>
+        <p>Choose your next destination.</p>
       </div>
 
-      {filteredFlights.length === 0 ? (
-        <p className="status-message">
-          {showHistory
-            ? "No departed flights found."
-            : "No available flights right now."}
-        </p>
+      {availableFlights.length === 0 ? (
+        <p className="status-message">No available flights.</p>
       ) : (
         <div className="flights-grid">
-          {filteredFlights.map((flight) => (
+          {availableFlights.map((flight) => (
             <FlightCard key={flight._id} flight={flight} />
           ))}
         </div>
+      )}
+
+      {/* 📄 BOOKING HISTORY (ALL USERS) */}
+      <div className="flights-header">
+        <h1>My Bookings</h1>
+      </div>
+
+      {myBookings.length === 0 ? (
+        <p className="status-message">No bookings found.</p>
+      ) : (
+        <div className="flights-grid">
+          {myBookings.map((booking) => (
+            <FlightCard
+              key={booking._id}
+              flight={booking.flightId}
+              passengers={booking.passengers}
+              totalPrice={booking.totalPrice}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* 👨‍✈️ ADMIN ONLY: FLIGHT HISTORY */}
+      {user?.role === "admin" && (
+        <>
+          <div className="flights-header">
+            <h1>All Flight History</h1>
+          </div>
+
+          {pastFlights.length === 0 ? (
+            <p className="status-message">No past flights.</p>
+          ) : (
+            <div className="flights-grid">
+              {pastFlights.map((flight) => (
+                <FlightCard key={flight._id} flight={flight} />
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   );

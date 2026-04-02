@@ -13,7 +13,7 @@ router.get('/filter', flightController.filterFlights)
 // get the available flights not yet departed
 router.get('/available', flightController.getAvailableFlights);
 // get past flight already departed
-router.get('/history', flightController.getPastFlights);
+router.get('/history', verifyAdmin, flightController.getPastFlights);
 // get flight by Id
 router.get('/:id', validateObjectId, flightController.getFlightById)
 // get available seats

@@ -21,6 +21,9 @@ const bookFlight = (data) => {
     return api.post('/bookings', data)
 }
 
+const getMyBookings = (data) => {
+    return api.get('/bookings/my-history', data)
+}
 
 export {calculatePrice, paymentProcessing, checkSeatAvailability,
-    getBookingById,bookFlight}
+    getBookingById,bookFlight, getMyBookings}

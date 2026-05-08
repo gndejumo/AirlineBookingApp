@@ -1,132 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ===== Full-width navy wrapper ===== */
+.profile-wrapper {
+  background-color: #0f0f1a;
+  min-height: 100vh;
+}
+
+/* ===== Centered content ===== */
 .profile-page {
-  padding: 30px;
+  padding: 40px;
   max-width: 1100px;
   margin: auto;
-  font-family: Arial, sans-serif;
-  background: #f5f7fa;
+  font-family: 'DM Sans', sans-serif;
 }
 
-/* PROFILE CARD */
-.profile-card {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  margin-bottom: 30px;
-}
-
-.profile-card h1 {
-  margin-bottom: 15px;
-}
-
-.profile-info p {
-  margin: 6px 0;
-}
-
-/* MESSAGE */
-.profile-message {
-  color: #2ecc71;
-  margin-bottom: 10px;
-}
-
-/* BOOKINGS */
-.bookings-section h2 {
-  margin-bottom: 15px;
-}
-
-.bookings-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-/* BOOKING CARD */
-.booking-card {
-  background: #ffffff;
-  padding: 18px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  transition: all 0.2s ease;
-}
-
-.booking-card:hover {
-  transform: translateY(-5px);
-}
-
-.booking-card h3 {
-  margin-bottom: 10px;
-  font-size: 18px;
-}
-
-/* STATUS */
-.status {
-  font-weight: bold;
-}
-
-.status.active {
-  color: #2ecc71; /* green */
-}
-
-.status.cancelled {
-  color: #e74c3c; /* red */
-}
-
-/* DATE */
-.booking-date {
-  font-size: 12px;
-  color: #888;
-  margin-top: 5px;
-}
-
-/* BUTTON CONTAINER */
-.booking-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-/* SHARED BUTTON STYLE */
-.cancel-btn,
-.delete-btn {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-/* CANCEL BUTTON */
-.cancel-btn {
-  background: #f39c12;
-  color: white;
-}
-
-.cancel-btn:hover {
-  background: #d68910;
-}
-
-/* DELETE BUTTON */
-.delete-btn {
-  background: #e74c3c;
-  color: white;
-}
-
-.delete-btn:hover {
-  background: #c0392b;
-}
-
-/* EMPTY STATE */
-.empty-state {
-  text-align: center;
-  color: #777;
-  margin-top: 20px;
-}
-
-/* LOADING */
+/* ===== Loading ===== */
 .profile-status {
   text-align: center;
   margin-top: 50px;
-  color: #555;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ===== Profile Card ===== */
+.profile-card {
+  position: relative;
+  background: linear-gradient(160deg, #1a2340 0%, #0f1628 55%, #0a0f1e 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  padding: 32px 36px;
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+
+/* Faint watermark */
+.profile-card::before {
+  content: '✈';
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  transform: translateY(-50%) rotate(38deg);
+  font-size: 160px;
+  color: #ffffff;
+  opacity: 0.03;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+.profile-card h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 3px;
+  color: #ffffff;
+  margin: 0 0 20px;
+}
+
+/* Message */
+.profile-message {
+  font-size: 0.85rem;
+  color: #00b894;
+  margin-bottom: 14px;
+  letter-spacing: 0.3px;
+}
+
+/* Profile info */
+.profile-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px 24px;
+}
+
+.profile-info p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.profile-info p strong {
+  display: block;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.33);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+
+/* ===== Bookings Section ===== */
+.bookings-section h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 3px;
+  color: #ffffff;
+  margin: 0 0 20px;
+}
+
+.bookings-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.35);
+  font-family: 'DM Sans', sans-serif;
+  margin-top: 40px;
+  font-size: 0.95rem;
+}
+
+/* ===== Booking Card ===== */
+.booking-card {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  background: linear-gradient(160deg, #1a2340 0%, #0f1628 55%, #0a0f1e 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  font-family: 'DM Sans', sans-serif;
+  transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.booking-card::before {
+  content: '✈';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(38deg);
+  font-size: 100px;
+  color: #ffffff;
+  opacity: 0.03;
+  pointer-events: none;
+  user-select: none;
+}
+
+.booking-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6),
+    0 0 0 1.5px rgba(255, 255, 255, 0.12) inset;
+}
+
+/* Route heading */
+.booking-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin: 0 0 14px;
+}
+
+/* Dashed divider */
+.booking-card h3::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: 10px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.18) 0px,
+    rgba(255, 255, 255, 0.18) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+/* Info rows */
+.booking-card p {
+  margin: 6px 0;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.booking-card p strong {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+/* Booking date */
+.booking-date {
+  font-size: 10px !important;
+  color: rgba(255, 255, 255, 0.28) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 10px !important;
+}
+
+/* ===== Status Badge ===== */
+.status {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.status.active {
+  background: rgba(0, 184, 148, 0.15);
+  color: #00b894;
+  border: 0.5px solid rgba(0, 184, 148, 0.3);
+}
+
+.status.cancelled {
+  background: rgba(231, 76, 60, 0.15);
+  color: #e74c3c;
+  border: 0.5px solid rgba(231, 76, 60, 0.3);
+}
+
+/* ===== Actions ===== */
+.booking-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.cancel-btn,
+.delete-btn {
+  flex: 1;
+  padding: 0.5rem 0;
+  border: none;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.cancel-btn {
+  background: rgba(243, 156, 18, 0.2);
+  color: #f39c12;
+  border: 0.5px solid rgba(243, 156, 18, 0.35);
+}
+
+.cancel-btn:hover {
+  background: rgba(243, 156, 18, 0.32);
+  transform: translateY(-1px);
+}
+
+.delete-btn {
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+  border: 0.5px solid rgba(231, 76, 60, 0.35);
+}
+
+.delete-btn:hover {
+  background: rgba(231, 76, 60, 0.32);
+  transform: translateY(-1px);
 }

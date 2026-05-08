@@ -1,34 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap');
+
 .login-page {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #0f172a, #1e3a8a);
   padding: 20px;
+  font-family: 'DM Sans', sans-serif;
+
+  background-color: #0f0f1a;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 560'%3E%3Cdefs%3E%3CradialGradient id='glow' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%234a9eff' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%234a9eff' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cellipse cx='720' cy='280' rx='340' ry='300' fill='url(%23glow)'/%3E%3Cpath d='M180 140 L240 130 L290 150 L310 180 L320 220 L300 260 L270 290 L240 310 L210 320 L190 300 L170 270 L160 240 L155 200 L165 170 Z' fill='%234a9eff' opacity='0.5'/%3E%3Cpath d='M260 370 L310 360 L340 390 L350 440 L340 490 L310 520 L280 510 L255 480 L245 440 L248 400 Z' fill='%234a9eff' opacity='0.5'/%3E%3Cpath d='M580 120 L640 110 L680 125 L690 150 L670 170 L640 175 L610 165 L590 145 Z' fill='%234a9eff' opacity='0.5'/%3E%3Cpath d='M580 175 L660 165 L700 200 L720 260 L720 340 L700 400 L670 440 L640 450 L610 430 L590 390 L575 330 L565 260 L570 210 Z' fill='%234a9eff' opacity='0.5'/%3E%3Cpath d='M640 60 L800 40 L980 55 L1020 80 L960 100 L870 105 L780 100 L700 110 L650 95 Z' fill='%234a9eff' opacity='0.4'/%3E%3Cpath d='M760 110 L900 100 L980 115 L1040 150 L1060 190 L1030 220 L980 235 L920 240 L860 230 L810 210 L775 185 L755 155 Z' fill='%234a9eff' opacity='0.5'/%3E%3Cpath d='M990 360 L1080 350 L1120 380 L1130 430 L1110 460 L1060 470 L1010 455 L985 420 L980 385 Z' fill='%234a9eff' opacity='0.5'/%3E%3Ccircle cx='720' cy='280' r='260' fill='none' stroke='%234a9eff' stroke-width='0.4' opacity='0.2'/%3E%3Cline x1='0' y1='280' x2='1440' y2='280' stroke='%234a9eff' stroke-width='0.4' opacity='0.15'/%3E%3Cline x1='720' y1='0' x2='720' y2='560' stroke='%234a9eff' stroke-width='0.4' opacity='0.15'/%3E%3Cellipse cx='720' cy='280' rx='400' ry='260' fill='none' stroke='%234a9eff' stroke-width='0.3' opacity='0.12'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
+.login-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(13,27,62,0.82) 0%, rgba(10,22,40,0.88) 100%);
+  pointer-events: none;
+}
+
+/* ===== Card ===== */
 .login-card {
-  background: #ffffff;
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 420px;
-  padding: 35px 30px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  padding: 40px 36px;
+  border-radius: 20px;
+  border: 1.5px solid rgba(255,255,255,0.1);
+  background: rgba(15, 22, 40, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+
+.login-card::before {
+  content: '✈';
+  display: block;
+  text-align: center;
+  font-size: 2rem;
+  color: #7eb8f7;
+  margin-bottom: 4px;
+  opacity: 0.8;
 }
 
 .login-card h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 3px;
   text-align: center;
-  margin-bottom: 8px;
-  color: #1e3a8a;
+  color: #ffffff;
+  margin-bottom: 6px;
 }
 
-.login-card p {
+.login-card > p {
   text-align: center;
-  color: #666;
-  margin-bottom: 20px;
-  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 28px;
+  font-size: 13px;
+  letter-spacing: 0.3px;
 }
 
+/* ===== Form ===== */
 .login-form {
   display: flex;
   flex-direction: column;
@@ -38,66 +76,87 @@
 .form-group {
   display: flex;
   flex-direction: column;
+  gap: 6px;
 }
 
 .form-group label {
-  margin-bottom: 6px;
+  font-size: 11px;
   font-weight: 600;
-  font-size: 14px;
-  color: #333;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
 }
 
 .form-group input {
-  padding: 12px 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
   font-size: 14px;
+  color: #ffffff;
   outline: none;
-  transition: 0.3s;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+}
+
+.form-group input::placeholder {
+  color: rgba(255,255,255,0.28);
 }
 
 .form-group input:focus {
-  border-color: #1e3a8a;
-  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+  border-color: #7eb8f7;
+  background: rgba(126,184,247,0.06);
+  box-shadow: 0 0 0 3px rgba(126,184,247,0.15);
 }
 
 .login-btn {
-  background: #1e3a8a;
-  color: white;
+  margin-top: 4px;
+  padding: 13px;
   border: none;
-  padding: 12px;
-  border-radius: 8px;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0d1b3e;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 .login-btn:hover {
-  background: #172554;
+  background: rgba(255,255,255,0.88);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
+/* ===== Alert ===== */
 .error-message {
-  background: #fee2e2;
-  color: #991b1b;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  font-size: 14px;
+  background: rgba(239,68,68,0.12);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #fca5a5;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  font-size: 13px;
   text-align: center;
 }
 
+/* ===== Footer ===== */
 .login-footer {
-  margin-top: 18px;
+  margin-top: 20px;
   text-align: center;
-  font-size: 14px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
 }
 
 .login-footer a {
-  color: #1e3a8a;
+  color: #7eb8f7;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  transition: color 0.2s;
 }
 
 .login-footer a:hover {
-  text-decoration: underline;
+  color: #ffffff;
 }

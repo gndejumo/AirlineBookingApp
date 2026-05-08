@@ -30,9 +30,11 @@ function formatDate(dateStr) {
 // Helper: compute flight duration string
 function getDuration(dep, arr) {
   const diff = new Date(arr) - new Date(dep);
-  const hrs = Math.floor(diff / 3600000);
+  const days = Math.floor(diff / 86400000);
+  const hrs = Math.floor((diff % 86400000) / 3600000);
   const mins = Math.floor((diff % 3600000) / 60000);
-  if (hrs <= 0 && mins <= 0) return "";
+  if (days <= 0 && hrs <= 0 && mins <= 0) return "";
+  if (days > 0) return `${days}d ${hrs}h ${mins}m`;
   return hrs > 0 ? `${hrs}h ${mins}m` : `${mins}m`;
 }
 

@@ -19,38 +19,102 @@
   text-align: center;
 }
 
-/* Same gradient as flight card */
+/* Globe background */
 .hero-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(160deg, #1a2340 0%, #0f1628 55%, #0a0f1e 100%);
+  background: linear-gradient(160deg, #0d1b3e 0%, #0a1628 50%, #060d1f 100%);
 }
 
-/* Same bottom overlay */
-.hero-overlay {
+/* World map SVG layer */
+.hero-map {
   position: absolute;
   inset: 0;
   z-index: 1;
+  width: 100%;
+  height: 100%;
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 560'%3E%3Cdefs%3E%3CradialGradient id='glow' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%234a9eff' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%234a9eff' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3C!-- Globe circle glow --%3E%3Cellipse cx='720' cy='280' rx='340' ry='300' fill='url(%23glow)'/%3E%3C!-- Simplified continent shapes --%3E%3C!-- North America --%3E%3Cpath d='M180 140 L240 130 L290 150 L310 180 L320 220 L300 260 L270 290 L240 310 L210 320 L190 300 L170 270 L160 240 L155 200 L165 170 Z' fill='%234a9eff' opacity='0.5'/%3E%3C!-- Central America --%3E%3Cpath d='M240 320 L260 330 L255 360 L240 370 L230 355 Z' fill='%234a9eff' opacity='0.5'/%3E%3C!-- South America --%3E%3Cpath d='M260 370 L310 360 L340 390 L350 440 L340 490 L310 520 L280 510 L255 480 L245 440 L248 400 Z' fill='%234a9eff' opacity='0.5'/%3E%3C!-- Europe --%3E%3Cpath d='M580 120 L640 110 L680 125 L690 150 L670 170 L640 175 L610 165 L590 145 Z' fill='%234a9eff' opacity='0.5'/%3E%3C!-- UK --%3E%3Cpath d='M555 115 L570 108 L575 125 L560 130 Z' fill='%234a9eff' opacity='0.5'/%3E%3C!-- Scandinavia --%3E%3Cpath d='M600 80 L625 70 L640 90 L625 110 L605 105 Z' fill='%234a9eff' opacity='0.45'/%3E%3C!-- Africa --%3E%3Cpath d='M580 175 L660 165 L700 200 L720 260 L720 340 L700 400 L670 440 L640 450 L610 430 L590 390 L575 330 L565 260 L570 210 Z' fill='%234a9eff' opacity='0.5'/%3E%3C!-- Middle East --%3E%3Cpath d='M700 155 L750 148 L780 170 L775 200 L740 215 L705 200 Z' fill='%234a9eff' opacity='0.45'/%3E%3C!-- Russia --%3E%3Cpath d='M640 60 L800 40 L980 55 L1020 80 L960 100 L870 105 L780 100 L700 110 L650 95 Z' fill='%234a9eff' opacity='0.4'/%3E%3C!-- Asia (main) --%3E%3Cpath d='M760 110 L900 100 L980 115 L1040 150 L1060 190 L1030 220 L980 235 L920 240 L860 230 L810 210 L775 185 L755 155 Z' fill='%234a9eff' opacity='0.5'/%3E%3C!-- India --%3E%3Cpath d='M830 235 L870 230 L890 270 L880 310 L855 330 L830 310 L820 270 Z' fill='%234a9eff' opacity='0.5'/%3E%3C!-- Southeast Asia --%3E%3Cpath d='M980 230 L1030 220 L1060 250 L1050 280 L1010 285 L980 265 Z' fill='%234a9eff' opacity='0.45'/%3E%3C!-- Japan --%3E%3Cpath d='M1070 160 L1090 155 L1100 175 L1085 185 L1068 178 Z' fill='%234a9eff' opacity='0.5'/%3E%3C!-- Australia --%3E%3Cpath d='M990 360 L1080 350 L1120 380 L1130 430 L1110 460 L1060 470 L1010 455 L985 420 L980 385 Z' fill='%234a9eff' opacity='0.5'/%3E%3C!-- New Zealand --%3E%3Cpath d='M1140 450 L1155 445 L1165 465 L1155 480 L1140 472 Z' fill='%234a9eff' opacity='0.4'/%3E%3C!-- Greenland --%3E%3Cpath d='M310 60 L370 50 L400 70 L390 100 L355 110 L315 95 Z' fill='%234a9eff' opacity='0.35'/%3E%3C!-- Grid lines (latitude/longitude) --%3E%3Ccircle cx='720' cy='280' r='260' fill='none' stroke='%234a9eff' stroke-width='0.4' opacity='0.2'/%3E%3Ccircle cx='720' cy='280' r='310' fill='none' stroke='%234a9eff' stroke-width='0.3' opacity='0.15'/%3E%3Cline x1='0' y1='280' x2='1440' y2='280' stroke='%234a9eff' stroke-width='0.4' opacity='0.15'/%3E%3Cline x1='720' y1='0' x2='720' y2='560' stroke='%234a9eff' stroke-width='0.4' opacity='0.15'/%3E%3Cellipse cx='720' cy='280' rx='200' ry='260' fill='none' stroke='%234a9eff' stroke-width='0.3' opacity='0.12'/%3E%3Cellipse cx='720' cy='280' rx='400' ry='260' fill='none' stroke='%234a9eff' stroke-width='0.3' opacity='0.12'/%3E%3Cline x1='0' y1='180' x2='1440' y2='180' stroke='%234a9eff' stroke-width='0.3' opacity='0.1'/%3E%3Cline x1='0' y1='380' x2='1440' y2='380' stroke='%234a9eff' stroke-width='0.3' opacity='0.1'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Gradient overlay over map */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.00)  0%,
-    rgba(0, 0, 0, 0.10) 40%,
-    rgba(0, 0, 0, 0.55) 70%,
-    rgba(0, 0, 0, 0.85) 100%
+    rgba(10, 22, 40, 0.25) 0%,
+    rgba(10, 22, 40, 0.10) 40%,
+    rgba(10, 22, 40, 0.60) 75%,
+    rgba(6, 13, 31, 0.90) 100%
   );
 }
 
-/* Same faint watermark plane */
+/* Animated flight paths canvas */
+.hero-flight-paths {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Glowing dots at city locations */
+.hero-city-dot {
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.hero-city-dot::before {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #7eb8f7;
+  box-shadow: 0 0 6px 2px rgba(126, 184, 247, 0.6);
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+.hero-city-dot::after {
+  content: '';
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(126, 184, 247, 0.3);
+  position: absolute;
+  top: -4.5px;
+  left: -4.5px;
+  animation: pulse-ring 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Faint watermark plane */
 .hero-watermark {
   position: absolute;
   top: 38%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(38deg);
   font-size: 340px;
-  color: #ffffff;
-  opacity: 0.03;
-  z-index: 2;
+  color: #4a9eff;
+  opacity: 0.025;
+  z-index: 4;
   pointer-events: none;
   user-select: none;
   line-height: 1;
@@ -59,12 +123,12 @@
 /* Hero content */
 .hero-content {
   position: relative;
-  z-index: 3;
+  z-index: 5;
 }
 
 .hero-eyebrow {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(126, 184, 247, 0.6);
   letter-spacing: 2.5px;
   text-transform: uppercase;
   margin: 0 0 14px;
@@ -139,7 +203,7 @@
   bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 3;
+  z-index: 6;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -186,9 +250,7 @@
   justify-content: center;
   gap: 0;
   margin-top: 24px;
-  background: linear-gradient(160deg, #1a2340 0%, #0f1628 100%) !important;
-  background-color: #0f1628 !important;
-  background-image: none !important;
+  background: linear-gradient(160deg, #1a2340 0%, #0f1628 100%);
   border: 1.5px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   padding: 28px 40px;
@@ -197,14 +259,14 @@
 .stat-value {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 2.2rem;
-  color: #1a2340 !important;
+  color: #0a0a0a;
   letter-spacing: 2px;
   line-height: 1;
 }
 
 .stat-label {
   font-size: 10px;
-  color: rgba(0, 0, 0, 0.5) !important;
+  color: rgba(17, 12, 12, 0.4);
   text-transform: uppercase;
   letter-spacing: 1.2px;
 }
@@ -216,8 +278,6 @@
   gap: 4px;
   flex: 1;
 }
-
-
 
 .stat-divider {
   width: 0.5px;

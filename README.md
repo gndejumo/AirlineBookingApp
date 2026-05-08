@@ -46,3 +46,11 @@ Build tool	    Webpack	                Vite
 Env syntax	    process.env.REACT_APP_*	import.meta.env.VITE_*
 Speed	        Slower	                Much faster
 Config file	    None needed	            vite.config.js
+
+
+| Scenario        | authHeader | token                 | Result                 |
+| --------------- | ---------- | --------------------- | ---------------------- |
+| Walang header   | ❌         | ❌                   | `!authHeader`          |
+| `Bearer abc123` | ✔️         | ✔️                   | OK                     |
+| `Bearer` lang   | ✔️         | ❌                   | `!token`               |
+| `Random abc123` | ✔️         | ✔️ (pero mali format)| caught by `startsWith` |

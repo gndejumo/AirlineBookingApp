@@ -15,7 +15,7 @@ const adminRoutes = require("./routes/adminRoutes")
 const bookingRoutes = require("./routes/bookingRoutes")
 
 app.get('/', (_req, res) => {
-    res.send('Welcome from express!')
+    res.send('Server is alive!')
 })
 app.use(cors({
   origin: [

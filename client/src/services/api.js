@@ -5,7 +5,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 if (!API_URL) {
   console.error("API URL is undefined! Check Vercel environment variables.");
 }
-
+console.log("API URL:", process.env.REACT_APP_API_URL);
 const api = axios.create({
   baseURL: API_URL,
   headers: {

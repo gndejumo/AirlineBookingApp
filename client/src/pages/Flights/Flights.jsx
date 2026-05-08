@@ -16,14 +16,16 @@ function Flights() {
   useEffect(() => {
     const fetchUserAndData = async () => {
       try {
-        // 1️⃣ Get all flights
+        // ✅ Public - kahit hindi naka-login
         const flightsRes = await getAllFlights();
         const allFlights = flightsRes.data.flights || flightsRes.data || [];
         setFlights(allFlights);
 
-        // 2️⃣ Get user bookings
-        const bookingsRes = await getMyBookings();
-        setBookings(bookingsRes.data.myBookings || []);
+        // ✅ Private - fetch lang kung naka-login
+        if (user) {
+          const bookingsRes = await getMyBookings();
+          setBookings(bookingsRes.data.myBookings || []);
+        }
 
       } catch (err) {
         console.error(err);
@@ -34,7 +36,7 @@ function Flights() {
     };
 
     fetchUserAndData();
-  }, []);
+  }, [user]);
 
   if (loading) return <h2 className="status-message">Loading...</h2>;
   if (error) return <h2 className="status-message error">{error}</h2>;
